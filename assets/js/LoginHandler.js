@@ -47,11 +47,11 @@ form?.addEventListener('submit', (e) => {
   // (password is ignored for this mock)
 
   if (usernameRaw === 'user') {
-    window.location.href = 'user/home.html';
+    window.location.href = 'User/home.html';
     return;
   }
   if (usernameRaw === 'admin') {
-    window.location.href = 'admin/dashboard.html';
+    window.location.href = 'Admin/dashboard.html';
     return;
   }
 
