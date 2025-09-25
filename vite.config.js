@@ -4,10 +4,9 @@ import { viteStaticCopy } from "vite-plugin-static-copy";
 
 export default defineConfig({
   root: ".",
-  base: "./",
+  base: "/",  // Changed to absolute base for Vercel
   build: {
     outDir: "dist",
-    assetsDir: "assets", // put vite-generated files under /assets
     rollupOptions: {
       input: {
         index: resolve(__dirname, "index.html"),
@@ -26,30 +25,59 @@ export default defineConfig({
         "admin-export": resolve(__dirname, "Admin/export.html")
       },
       output: {
-        // Force ALL emitted files into /assets
-        entryFileNames: "assets/[name]-[hash].js",
-        chunkFileNames: "assets/[name]-[hash].js",
-        assetFileNames: ({ name }) => {
-          // keep existing subfolders if possible (css, icons, logos, Fonts, etc.)
-          if (!name) return "assets/[name]-[hash][extname]";
-          const seg = name
-            .replace(/\\/g, "/")
-            .split("/")
-            .slice(-2, -1)[0]; // parent folder name
-          // If parent folder looks like a known asset dir, preserve it
-          if (/(css|js|icons|logos|Fonts|rewards)/i.test(seg)) {
-            return `assets/${seg}/[name]-[hash][extname]`;
+        // Maintain directory structure
+        entryFileNames: (chunkInfo) => {
+          const facadeModuleId = chunkInfo.facadeModuleId;
+          if (facadeModuleId) {
+            // Check if this is a User or Admin page
+            if (facadeModuleId.includes('User/')) {
+              return 'User/[name]-[hash].js';
+            }
+            if (facadeModuleId.includes('Admin/')) {
+              return 'Admin/[name]-[hash].js';
+            }
           }
-          return "assets/[name]-[hash][extname]";
+          return 'assets/[name]-[hash].js';
+        },
+        chunkFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: (assetInfo) => {
+          const name = assetInfo.name;
+          if (!name) return 'assets/[name]-[hash][extname]';
+          
+          // Preserve asset folder structure
+          if (name.includes('css')) {
+            return 'assets/css/[name]-[hash][extname]';
+          }
+          if (name.includes('js')) {
+            return 'assets/js/[name]-[hash][extname]';
+          }
+          if (name.includes('fonts') || name.includes('Fonts')) {
+            return 'assets/Fonts/[name]-[hash][extname]';
+          }
+          if (name.includes('icons')) {
+            return 'assets/icons/[name]-[hash][extname]';
+          }
+          if (name.includes('logos')) {
+            return 'assets/logos/[name]-[hash][extname]';
+          }
+          if (name.includes('rewards')) {
+            return 'assets/rewards/[name]-[hash][extname]';
+          }
+          
+          return 'assets/[name]-[hash][extname]';
         }
       }
     }
   },
   plugins: [
-    // Copy your raw /assets tree as-is (icons, logos, fonts, etc.)
-    // so any files not processed by Vite still exist in dist/assets.
+    // Copy assets folder to maintain structure
     viteStaticCopy({
-      targets: [{ src: "assets", dest: "." }]
+      targets: [
+        {
+          src: "assets/**/*",
+          dest: "assets"
+        }
+      ]
     })
   ]
 });
