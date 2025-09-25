@@ -13,6 +13,10 @@
   <link rel="icon" type="image/svg+xml" href="/assets/logos/EcoIconSVG.svg">
   <link rel="shortcut icon" type="image/svg+xml" href="/assets/logos/EcoIconSVG.svg">
   <meta name="theme-color" content="#4cd469">
+  <script type="module">
+    import { injectSpeedInsights } from '@vercel/speed-insights';
+    injectSpeedInsights();
+  </script>
 </head>
 
 <body data-page="profile" data-icon-base="/assets/icons/">
@@ -104,19 +108,19 @@
   <!-- Bottom nav-->
   <nav class="nav" aria-label="Primary">
     <div class="nav-inner">
-      <a href="/home.html">
+      <a href="/User/home.html">
         <img class="nav-icon" data-icon="house" alt="" />
         <span class="label">Home</span>
       </a>
-      <a href="/report.html">
+      <a href="/User/report.html">
         <img class="nav-icon" data-icon="doc" alt="" />
         <span class="label">Report</span>
       </a>
-      <a href="/shop.html">
+      <a href="/User/shop.html">
         <img class="nav-icon" data-icon="bag" alt="" />
         <span class="label">Shop</span>
       </a>
-      <a href="/profile.html" aria-current="page">
+      <a href="/User/profile.html" aria-current="page">
         <img class="nav-icon" data-icon="user" alt="" />
         <span class="label">Profile</span>
       </a>

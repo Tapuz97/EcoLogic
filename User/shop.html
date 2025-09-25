@@ -15,6 +15,10 @@
 
   <!-- Optional: brand font preload -->
   <link rel="preload" href="/assets/fonts/Frankfurter.ttf" as="font" type="font/ttf" crossorigin />
+  <script type="module">
+    import { injectSpeedInsights } from '@vercel/speed-insights';
+    injectSpeedInsights();
+  </script>
 </head>
 
 <body data-page="shop" data-icon-base="/assets/icons/">
@@ -62,19 +66,19 @@
   <!-- Bottom nav -->
   <nav class="nav" aria-label="Primary">
     <div class="nav-inner">
-      <a href="/home.html">
+      <a href="/User/home.html">
         <img class="nav-icon" data-icon="house" alt="" />
         <span class="label">Home</span>
       </a>
-      <a href="/report.html">
+      <a href="/User/report.html">
         <img class="nav-icon" data-icon="doc" alt="" />
         <span class="label">Report</span>
       </a>
-      <a href="/shop.html" aria-current="page">
+      <a href="/User/shop.html" aria-current="page">
         <img class="nav-icon" data-icon="bag" alt="" />
         <span class="label">Shop</span>
       </a>
-      <a href="/profile.html">
+      <a href="/User/profile.html">
         <img class="nav-icon" data-icon="user" alt="" />
         <span class="label">Profile</span>
       </a>

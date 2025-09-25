@@ -14,6 +14,10 @@
   <meta name="theme-color" content="#4cd469">
 
   <link rel="preload" href="/assets/Fonts/Frankfurter.ttf" as="font" type="font/ttf" crossorigin>
+  <script type="module">
+    import { injectSpeedInsights } from '@vercel/speed-insights';
+    injectSpeedInsights();
+  </script>
 </head>
 <body data-page="home" data-icon-base="/assets/icons/">
   <main class="container" role="main">
@@ -41,7 +45,7 @@
     <section class="recent" aria-labelledby="recent-title">
       <div class="recent-head">
         <h2 id="recent-title" class="h1" style="font-size:clamp(18px,3.4vw,22px);">Recent reports</h2>
-        <a class="btn btn-ghost" href="/./history.html">View all</a>
+        <a class="btn btn-ghost" href="/User/history.html">View all</a>
       </div>
 
       <ul class="report-list">
@@ -82,19 +86,19 @@
   <!-- Bottom nav-->
   <nav class="nav" aria-label="Primary">
     <div class="nav-inner">
-      <a href="/home.html">
+      <a href="/User/home.html">
         <img class="nav-icon" data-icon="house" alt="" />
         <span class="label">Home</span>
       </a>
-      <a href="/report.html" aria-current="page">
+      <a href="/User/report.html" aria-current="page">
         <img class="nav-icon" data-icon="doc" alt="" />
         <span class="label">Report</span>
       </a>
-      <a href="/shop.html">
+      <a href="/User/shop.html">
         <img class="nav-icon" data-icon="bag" alt="" />
         <span class="label">Shop</span>
       </a>
-      <a href="/profile.html">
+      <a href="/User/profile.html">
         <img class="nav-icon" data-icon="user" alt="" />
         <span class="label">Profile</span>
       </a>

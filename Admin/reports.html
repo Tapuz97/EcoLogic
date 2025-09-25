@@ -8,10 +8,14 @@
   <link id="theme-css" rel="stylesheet" href="/assets/css/style_light.css" />
   <link rel="icon" type="image/svg+xml" href="/assets/logos/EcoIconSVG.svg" />
   <meta name="theme-color" content="#4cd469" />
-  <link rel="preload" href=".//assets/fonts/Frankfurter.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="/assets/fonts/Frankfurter.ttf" as="font" type="font/ttf" crossorigin>
 
   <script src="/assets/js/ThemeToggle.js" defer></script>
   <script src="/assets/js/AdminApp.js" type="module" defer></script>
+  <script type="module">
+    import { injectSpeedInsights } from '@vercel/speed-insights';
+    injectSpeedInsights();
+  </script>
 </head>
 <body data-page="reports" data-icon-base="/assets/icons/">
   <!-- Top Nav -->

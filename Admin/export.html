@@ -12,6 +12,10 @@
   <script src="/assets/js/ThemeToggle.js" defer></script>
   <script src="/assets/js/AdminApp.js" type="module" defer></script>
   <script src="/assets/js/ExportHandler.js" type="module" defer></script>
+  <script type="module">
+    import { injectSpeedInsights } from '@vercel/speed-insights';
+    injectSpeedInsights();
+  </script>
 </head>
 <body data-page="export" data-icon-base="/assets/icons/">
 
