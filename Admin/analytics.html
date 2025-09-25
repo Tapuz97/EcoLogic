@@ -1,23 +1,7 @@
 <!doctype html>
 <html lang="en" class="h-full">
 <head>
-  <script>
-    // Fix CSS ID for ThemeToggle.js
-    (function() {
-      const cssLinks = document.querySelectorAll('link[rel="stylesheet"]');
-      const mainCssLink = Array.from(cssLinks).find(link => 
-        link.href.includes('/assets/css/')
-      );
-      if (mainCssLink && !document.getElementById('theme-css')) {
-        mainCssLink.id = 'theme-css';
-        // Ensure we use the theme CSS files
-        if (!mainCssLink.href.includes('style_light') && !mainCssLink.href.includes('style_dark')) {
-          mainCssLink.href = '/assets/css/style_light.css';
-        }
-      }
-    })();
-  </script>
-  <meta charset="utf-8" />
+<meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>EcoLogic Admin · Analytics</title>
 
@@ -27,30 +11,36 @@
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
   <script src="/assets/js/ThemeToggle.js" defer></script>
-  <script src="/assets/js/AdminApp.js" type="module" defer></script>
-  <script type="module" src="/assets/js/GraphHandler.js" defer></script>
+  <script src="/assets/js/AdminApp.js" defer></script>
+  <script src="/assets/js/GraphHandler.js" defer></script>
 
   <script type="module">
     import { injectSpeedInsights } from '@vercel/speed-insights';
     injectSpeedInsights();
   </script>
 </head>
-<body data-page="analytics" data-icon-base="/assets/icons/">
+<body data-page="analytics" data-icon-base="/assets/icons/" data-logo-base="/assets/logos/">
 
   <!-- Admin Top Nav (same structure as Reports) -->
   <header class="admin-topnav" aria-label="Admin navigation">
     <div class="admin-topnav-inner">
-      <a class="admin-brand" href="/dashboard.html">
+      <a class="admin-brand" href="/Admin/dashboard.html">
         <img class="nav-icon" data-icon="ecologo" alt="" />
         <span>EcoLogic · Admin</span>
       </a>
       <nav class="admin-nav">
-        <a href="/dashboard.html"><img class="nav-icon" data-icon="house" alt="" />Dashboard</a>
-        <a href="/reports.html"><img class="nav-icon" data-icon="doc" alt="" />Reports</a>
-        <a href="/analytics.html" aria-current="page"><img class="nav-icon" data-icon="chart" alt="" />Analytics</a>
-        <a href="/export.html"><img class="nav-icon" data-icon="export" alt="" />Export</a>
-        <a href="/../login.html"><img class="nav-icon" data-icon="logout" alt="" />Logout</a>
+        <a href="/Admin/dashboard.html"><img class="nav-icon" data-icon="house" alt="" />Dashboard</a>
+        <a href="/Admin/reports.html"><img class="nav-icon" data-icon="doc" alt="" />Reports</a>
+        <a href="/Admin/analytics.html" aria-current="page"><img class="nav-icon" data-icon="chart" alt="" />Analytics</a>
+        <a href="/Admin/export.html"><img class="nav-icon" data-icon="export" alt="" />Export</a>
+        <a href="/login.html"><img class="nav-icon" data-icon="logout" alt="" />Logout</a>
       </nav>
+      <!-- Theme toggle button -->
+      <button id="themeToggle" class="theme-toggle theme-toggle--inline" aria-pressed="false" aria-label="Toggle theme">
+        <span class="theme-toggle__icon theme-toggle__moon">🌙</span>
+        <span class="theme-toggle__icon theme-toggle__sun">☀️</span>
+        <div class="theme-toggle__knob"></div>
+      </button>
     </div>
   </header>
 
@@ -118,6 +108,10 @@
         <div class="chart-card" style="margin-top:10px;">
           <canvas id="analyticsChart" height="160"></canvas>
         </div>
+        
+        <div style="margin-top:10px; text-align:center;">
+          <button class="btn btn-primary" id="btnDownloadChart" type="button">Download</button>
+        </div>
       </div>
     </div>
   </section>
@@ -125,3 +119,6 @@
   </main>
 </body>
 </html>
+
+
+

@@ -15,9 +15,10 @@ console.log('AdminApp.js: Script loaded successfully');
 /* ---------------------- 1) Config & constants ---------------------- */
 const $  = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
-
-// These will be set when DOM is ready in boot function
-let PAGE_RAW, PAGE, THEME_LINK;
+const PAGE_RAW = document.body.dataset.page || "unknown";
+// normalize admin pages: admin-dashboard -> dashboard
+const PAGE = PAGE_RAW.replace(/^admin-/, "");
+const THEME_LINK = document.getElementById('theme-css');
 
 /* ---------------------- 2) API stubs (replace me) -----------------
    These are the single place to implement server calls later. Keep
@@ -280,8 +281,8 @@ async function initDashboard(){
   const list = $('#adminLatestReports'); if (list) list.innerHTML = reports.slice(0,5).map(renderLatestItem).join('');
 }
 
-// small reusable CSV export helper
-function csvFromTable(tbl, header = ["ID","Date","Time","Location","Status"]) {
+// small reusable CSV export helper (kept exported for reuse)
+export function csvFromTable(tbl, header = ["ID","Date","Time","Location","Status"]) {
   const bodyRows = [...tbl.tBodies[0]?.rows ?? []];
   const lines = [header.join(",")];
   for (const tr of bodyRows) {
@@ -700,11 +701,6 @@ async function initExport(){
 
 /* ---------------------- 7) Boot ---------------------- */
 (function boot(){
-  // Set page variables when DOM is ready
-  PAGE_RAW = document.body.dataset.page || "unknown";
-  PAGE = PAGE_RAW.replace(/^admin-/, "");
-  THEME_LINK = document.getElementById('theme-css');
-  
   console.log('AdminApp: Starting boot process for page:', PAGE);
   console.log('AdminApp: PAGE_RAW was:', PAGE_RAW);
   console.log('AdminApp: document.body.dataset.page is:', document.body.dataset.page);

@@ -52,7 +52,7 @@ export default defineConfig({
             return 'assets/js/[name]-[hash][extname]';
           }
           if (name.includes('fonts') || name.includes('Fonts')) {
-            return 'assets/Fonts/[name]-[hash][extname]';
+            return 'assets/fonts/[name]-[hash][extname]';
           }
           if (name.includes('icons')) {
             return 'assets/icons/[name]-[hash][extname]';
@@ -76,6 +76,10 @@ export default defineConfig({
         {
           src: "assets/**/*",
           dest: "assets"
+        },
+        {
+          src: "./ThemeToggle.js",
+          dest: ""
         }
       ]
     })

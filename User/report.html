@@ -1,30 +1,14 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <script>
-    // Fix CSS ID for ThemeToggle.js
-    (function() {
-      const cssLinks = document.querySelectorAll('link[rel="stylesheet"]');
-      const mainCssLink = Array.from(cssLinks).find(link => 
-        link.href.includes('/assets/css/')
-      );
-      if (mainCssLink && !document.getElementById('theme-css')) {
-        mainCssLink.id = 'theme-css';
-        // Ensure we use the theme CSS files
-        if (!mainCssLink.href.includes('style_light') && !mainCssLink.href.includes('style_dark')) {
-          mainCssLink.href = '/assets/css/style_light.css';
-        }
-      }
-    })();
-  </script>
-  <meta charset="utf-8" />
+<meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>EcoLogic · Report</title>
 
   <link id="theme-css" rel="stylesheet" href="/assets/css/style_light.css" />
   <link rel="icon" type="image/svg+xml" href="/assets/logos/EcoIconSVG.svg" />
   <link rel="shortcut icon" type="image/svg+xml" href="/assets/logos/EcoIconSVG.svg" />
-  <script src="/assets/js/CameraHandler.js" type="module" defer></script>
+  <script src="/assets/js/CameraHandler.js" defer></script>
 
   <meta name="theme-color" content="#4cd469" />
   <link rel="preload" href="/assets/fonts/Frankfurter.ttf" as="font" type="font/ttf" crossorigin />
@@ -43,6 +27,12 @@
         <div class="brand-name">EcoLogic</div>
         <div class="brand-tagline">Report, track, and redeem.</div>
       </div>
+      <!-- Theme toggle button -->
+      <button id="themeToggle" class="theme-toggle" aria-pressed="false" aria-label="Toggle theme">
+        <span class="theme-toggle__icon theme-toggle__moon">🌙</span>
+        <span class="theme-toggle__icon theme-toggle__sun">☀️</span>
+        <div class="theme-toggle__knob"></div>
+      </button>
     </header>
 
   <section class="welcome corner-fade" aria-labelledby="report-title">
@@ -168,6 +158,9 @@
   </nav>
 
   <script src="/assets/js/ThemeToggle.js" defer></script>
-  <script src="/assets/js/UserApp.js" type="module" defer></script>
+  <script src="/assets/js/UserApp.js" defer></script>
 </body>
 </html>
+
+
+

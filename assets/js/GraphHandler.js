@@ -64,6 +64,14 @@ const GraphHandler = (function(){
     const labels = lastNMonthsLabels(8);
     const datasets = buildDatasets(labels);
 
+    // Detect theme based on CSS file name
+    const themeLink = document.getElementById('theme-css');
+    const isDarkMode = themeLink && themeLink.href.includes('style_dark.css');
+    
+    // Theme-aware colors
+    const textColor = isDarkMode ? 'rgba(76,212,105,.55)' : 'rgba(95,113,105,.7)';
+    const gridColor = isDarkMode ? 'rgba(76,212,105,.55)' : 'rgba(95,113,105,.3)';
+
     const cfg = {
       type: type,
       data: { labels, datasets },
@@ -71,11 +79,21 @@ const GraphHandler = (function(){
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
-          legend: { position: 'top' }
+          legend: { 
+            position: 'top',
+            labels: { color: textColor }
+          }
         },
         scales: {
-          x: { ticks: { color: getComputedStyle(document.body).color } },
-          y: { beginAtZero: true, ticks: { color: getComputedStyle(document.body).color } }
+          x: { 
+            ticks: { color: textColor },
+            grid: { color: gridColor }
+          },
+          y: { 
+            beginAtZero: true, 
+            ticks: { color: textColor },
+            grid: { color: gridColor }
+          }
         }
       }
     };
@@ -91,22 +109,68 @@ const GraphHandler = (function(){
     }
   }
 
+  function downloadChart(){
+    const canvas = document.getElementById('analyticsChart');
+    if (!canvas || !chart) return;
+    
+    // Detect theme for background color
+    const themeLink = document.getElementById('theme-css');
+    const isDarkMode = themeLink && themeLink.href.includes('style_dark.css');
+    
+    // Create a temporary canvas with theme-appropriate background
+    const tempCanvas = document.createElement('canvas');
+    const tempCtx = tempCanvas.getContext('2d');
+    tempCanvas.width = canvas.width;
+    tempCanvas.height = canvas.height;
+    
+    // Fill with theme-appropriate background
+    if (isDarkMode) {
+      // Dark mode: use the card background color
+      tempCtx.fillStyle = 'rgba(18,24,37,.9)';
+    } else {
+      // Light mode: use white background
+      tempCtx.fillStyle = '#ffffff';
+    }
+    tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
+    
+    // Draw the chart on top
+    tempCtx.drawImage(canvas, 0, 0);
+    
+    // Create download link
+    const link = document.createElement('a');
+    link.download = `analytics-chart-${new Date().toISOString().split('T')[0]}.jpg`;
+    link.href = tempCanvas.toDataURL('image/jpeg', 0.9);
+    link.click();
+  }
+
   function init(){
     if (!hasChartJs()) return;
     const chartTypeEl = document.getElementById('chartType');
+    const downloadBtn = document.getElementById('btnDownloadChart');
+    
     // if chartType exists, wire change
     if (chartTypeEl){
       chartTypeEl.addEventListener('change', () => createOrUpdateChart(chartTypeEl.value || 'line'));
     }
+    
+    // wire download button
+    if (downloadBtn){
+      downloadBtn.addEventListener('click', downloadChart);
+    }
+    
+    // Listen for theme changes and update chart colors
+    window.addEventListener('ecologic:theme-change', () => {
+      const currentType = chartTypeEl?.value || 'line';
+      createOrUpdateChart(currentType);
+    });
+    
     // initial render
     createOrUpdateChart(chartTypeEl?.value || 'line');
   }
 
   // expose a safe init function
-  return { init, createOrUpdateChart };
+  return { init, createOrUpdateChart, downloadChart };
 })();
 
 // auto-run when loaded as a module (defer handles DOM ready)
 try { GraphHandler.init(); } catch(e) { console.debug('GraphHandler init skipped', e); }
-
-export default GraphHandler;

@@ -612,7 +612,7 @@ a.btn { text-decoration: none; }
 }
 .chart-card canvas{
   width: 100% !important;
-  height: auto !important;
+  height: 300px !important;
 }
 
 /* ========== 13) Long-doc scroll (Terms / Privacy) ========== */

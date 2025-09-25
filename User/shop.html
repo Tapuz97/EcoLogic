@@ -1,23 +1,7 @@
 <!doctype html>
 <html lang="en" class="h-full">
 <head>
-  <script>
-    // Fix CSS ID for ThemeToggle.js
-    (function() {
-      const cssLinks = document.querySelectorAll('link[rel="stylesheet"]');
-      const mainCssLink = Array.from(cssLinks).find(link => 
-        link.href.includes('/assets/css/')
-      );
-      if (mainCssLink && !document.getElementById('theme-css')) {
-        mainCssLink.id = 'theme-css';
-        // Ensure we use the theme CSS files
-        if (!mainCssLink.href.includes('style_light') && !mainCssLink.href.includes('style_dark')) {
-          mainCssLink.href = '/assets/css/style_light.css';
-        }
-      }
-    })();
-  </script>
-  <meta charset="utf-8" />
+<meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>EcoLogic · Shop</title>
 
@@ -46,6 +30,12 @@
         <div class="brand-name">EcoLogic</div>
         <div class="brand-tagline">Report, track, and redeem.</div>
       </div>
+      <!-- Theme toggle button -->
+      <button id="themeToggle" class="theme-toggle" aria-pressed="false" aria-label="Toggle theme">
+        <span class="theme-toggle__icon theme-toggle__moon">🌙</span>
+        <span class="theme-toggle__icon theme-toggle__sun">☀️</span>
+        <div class="theme-toggle__knob"></div>
+      </button>
     </header>
 
     <!-- EcoShop header + Wallet -->
@@ -103,6 +93,9 @@
 
   <!-- Scripts -->
   <script src="/assets/js/ThemeToggle.js" defer></script>
-  <script src="/assets/js/UserApp.js" type="module" defer></script>
+  <script src="/assets/js/UserApp.js" defer></script>
 </body>
 </html>
+
+
+
