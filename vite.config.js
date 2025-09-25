@@ -1,10 +1,10 @@
 import { defineConfig } from "vite";
 import { resolve } from "path";
+import { viteStaticCopy } from "vite-plugin-static-copy";
 
 export default defineConfig({
   root: ".",
-  base: "./",          // keep asset paths relative so /User & /Admin work
-  publicDir: "assets", // ✅ copy /assets into dist/
+  base: "./",
   build: {
     outDir: "dist",
     rollupOptions: {
@@ -25,5 +25,15 @@ export default defineConfig({
         "admin-export": resolve(__dirname, "Admin/export.html")
       }
     }
-  }
+  },
+  plugins: [
+    viteStaticCopy({
+      targets: [
+        {
+          src: "assets",
+          dest: "." // copy as dist/assets/*
+        }
+      ]
+    })
+  ]
 });
