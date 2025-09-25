@@ -1,4 +1,9 @@
 {
-  "cleanUrls": true,
-  "trailingSlash": false
+  "rewrites": [
+    { "source": "/login", "destination": "/login.html" },
+    { "source": "/terms", "destination": "/terms.html" },
+    { "source": "/privacy", "destination": "/privacy.html" },
+    { "source": "/user/:path*", "destination": "/user/:path*.html" },
+    { "source": "/admin/:path*", "destination": "/admin/:path*.html" }
+  ]
 }
