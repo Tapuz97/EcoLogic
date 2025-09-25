@@ -1,9 +1,11 @@
 {
   "rewrites": [
+    { "source": "/index", "destination": "/index.html" },
+    { "source": "/404", "destination": "/404.html" },
     { "source": "/login", "destination": "/login.html" },
     { "source": "/terms", "destination": "/terms.html" },
     { "source": "/privacy", "destination": "/privacy.html" },
-    { "source": "/user/:path*", "destination": "/user/:path*.html" },
-    { "source": "/admin/:path*", "destination": "/admin/:path*.html" }
+    { "source": "/user/:path*", "destination": "/User/:path*.html" },
+    { "source": "/admin/:path*", "destination": "/Admin/:path*.html" }
   ]
 }
