@@ -33,6 +33,26 @@
       "source": "/404.html",
       "destination": "/404",
       "statusCode": 404
+    },
+    {
+      "source": "/admin/login",
+      "destination": "/404",
+      "statusCode": 404
+    },
+    {
+      "source": "/admin/:path*",
+      "destination": "/404",
+      "statusCode": 404
+    },
+    {
+      "source": "/user/login", 
+      "destination": "/404",
+      "statusCode": 404
+    },
+    {
+      "source": "/user/:path*",
+      "destination": "/404", 
+      "statusCode": 404
     }
   ]
 }
