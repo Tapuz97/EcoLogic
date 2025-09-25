@@ -30,24 +30,9 @@
   ],
   "redirects": [
     {
-      "source": "/admin/login",
-      "destination": "/404.html",
-      "statusCode": 301
-    },
-    {
-      "source": "/admin/((?!.*[A-Z]).*)",
-      "destination": "/404.html",
-      "statusCode": 301
-    },
-    {
-      "source": "/user/login", 
-      "destination": "/404.html",
-      "statusCode": 301
-    },
-    {
-      "source": "/user/((?!.*[A-Z]).*)",
-      "destination": "/404.html", 
-      "statusCode": 301
+      "source": "/404.html",
+      "destination": "/404",
+      "statusCode": 404
     }
   ]
 }
