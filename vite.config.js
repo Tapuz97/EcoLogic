@@ -8,16 +8,6 @@ export default defineConfig({
   build: {
     outDir: "dist",
     rollupOptions: {
-      external: [
-        '/assets/js/ThemeToggle.js',
-        '/assets/js/LoginHandler.js',
-        '/assets/js/UserApp.js',
-        '/assets/js/AdminApp.js',
-        '/assets/js/CameraHandler.js',
-        '/assets/js/ExportHandler.js',
-        '/assets/js/GraphHandler.js',
-        '/assets/js/PageErr.js'
-      ],
       input: {
         index: resolve(__dirname, "index.html"),
         login: resolve(__dirname, "login.html"),
@@ -89,5 +79,7 @@ export default defineConfig({
         }
       ]
     })
-  ]
+  ],
+  // Prevent Vite from processing these scripts
+  assetsInclude: ['**/*.js']
 });

@@ -1,6 +1,22 @@
 <!doctype html>
 <html lang="en" class="h-full">
 <head>
+  <script>
+    // Fix CSS ID for ThemeToggle.js
+    (function() {
+      const cssLinks = document.querySelectorAll('link[rel="stylesheet"]');
+      const mainCssLink = Array.from(cssLinks).find(link => 
+        link.href.includes('/assets/css/')
+      );
+      if (mainCssLink && !document.getElementById('theme-css')) {
+        mainCssLink.id = 'theme-css';
+        // Ensure we use the theme CSS files
+        if (!mainCssLink.href.includes('style_light') && !mainCssLink.href.includes('style_dark')) {
+          mainCssLink.href = '/assets/css/style_light.css';
+        }
+      }
+    })();
+  </script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>EcoLogic · Profile</title>
