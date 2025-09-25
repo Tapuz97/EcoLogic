@@ -30,29 +30,24 @@
   ],
   "redirects": [
     {
-      "source": "/404.html",
-      "destination": "/404",
-      "statusCode": 404
-    },
-    {
       "source": "/admin/login",
-      "destination": "/404",
-      "statusCode": 404
+      "destination": "/404.html",
+      "statusCode": 301
     },
     {
-      "source": "/admin/:path*",
-      "destination": "/404",
-      "statusCode": 404
+      "source": "/admin/((?!.*[A-Z]).*)",
+      "destination": "/404.html",
+      "statusCode": 301
     },
     {
       "source": "/user/login", 
-      "destination": "/404",
-      "statusCode": 404
+      "destination": "/404.html",
+      "statusCode": 301
     },
     {
-      "source": "/user/:path*",
-      "destination": "/404", 
-      "statusCode": 404
+      "source": "/user/((?!.*[A-Z]).*)",
+      "destination": "/404.html", 
+      "statusCode": 301
     }
   ]
 }
