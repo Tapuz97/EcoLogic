@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "clean": "rimraf dist"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,7 @@
   "homepage": "https://github.com/Tapuz97/EcoLogic#readme",
   "description": "",
   "devDependencies": {
+    "rimraf": "^6.0.1",
     "vite": "^7.1.7",
     "vite-plugin-static-copy": "^3.1.2"
   }
