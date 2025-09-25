@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EcoLogic Admin · Analytics</title>
+
+  <link id="theme-css" rel="stylesheet" href="../assets/css/style_light.css" />
+  <link rel="icon" type="image/svg+xml" href="../assets/logos/EcoIconSVG.svg" />
+  <meta name="theme-color" content="#4cd469" />
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+  <script src="../assets/js/ThemeToggle.js" defer></script>
+  <script src="../assets/js/AdminApp.js" type="module" defer></script>
+  <script type="module" src="../assets/js/GraphHandler.js" defer></script>
+
+</head>
+<body data-page="analytics" data-icon-base="../assets/icons/">
+
+  <!-- Admin Top Nav (same structure as Reports) -->
+  <header class="admin-topnav" aria-label="Admin navigation">
+    <div class="admin-topnav-inner">
+      <a class="admin-brand" href="dashboard.html">
+        <img class="nav-icon" data-icon="ecologo" alt="" />
+        <span>EcoLogic · Admin</span>
+      </a>
+      <nav class="admin-nav">
+        <a href="dashboard.html"><img class="nav-icon" data-icon="house" alt="" />Dashboard</a>
+        <a href="reports.html"><img class="nav-icon" data-icon="doc" alt="" />Reports</a>
+        <a href="analytics.html" aria-current="page"><img class="nav-icon" data-icon="chart" alt="" />Analytics</a>
+        <a href="export.html"><img class="nav-icon" data-icon="export" alt="" />Export</a>
+        <a href="../login.html"><img class="nav-icon" data-icon="logout" alt="" />Logout</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" role="main">
+    <section class="dashboard-head" style="margin-top:8px">
+      <h1 class="h1">Analytics</h1>
+      <p class="sub">Overview of reports by status, time and species.</p>
+    </section>
+
+    <!-- SAME FILTER BAR AS REPORTS -->
+    <section class="reports-filters" aria-label="Filters">
+      <form class="form" id="adminReportFilters">
+        <div class="field">
+          <label class="label" for="filterSpecies">Species</label>
+          <input class="input" id="filterSpecies" type="text" name="species">
+        </div>
+        <div class="field">
+          <label class="label" for="filterDateFrom">Date from</label>
+          <input class="input" id="filterDateFrom" type="date" name="from">
+        </div>
+        <div class="field">
+          <label class="label" for="filterDateTo">Date to</label>
+          <input class="input" id="filterDateTo" type="date" name="to">
+        </div>
+        <div class="field">
+          <label class="label" for="filterLocation">Location</label>
+          <input class="input" id="filterLocation" type="text" name="location">
+        </div>
+        <div class="field">
+          <label class="label" for="filterStatus">Status</label>
+          <select class="input" id="filterStatus" name="status">
+            <option value="" selected>Any</option>
+            <option value="pending">Pending</option>
+            <option value="approved">Approved</option>
+            <option value="denied">Denied</option>
+          </select>
+        </div>
+        <div class="filter-actions">
+          <button class="btn" id="btnApplyFilters" type="button">Apply</button>
+          <button class="btn btn-ghost" id="btnClearFilters" type="button">Clear</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Charts -->
+  <!-- Chart controls + canvas (single chart with overlays) -->
+  <section class="welcome" aria-label="Chart" style="margin-top:12px;">
+    <div class="welcome-inner one-col">
+      <div class="hero">
+        <div class="cta-row" style="gap:8px; align-items:center; flex-wrap:wrap;">
+          <label class="label" for="chartType" style="margin:0;">Chart type</label>
+          <select class="input" id="chartType" style="width:160px;">
+            <option value="line" selected>Line</option>
+            <option value="bar">Bar</option>
+          </select>
+
+          <span class="sub" style="opacity:.8; margin-left:auto;">Compare species</span>
+          <button class="btn btn-ghost" id="btnAddSeries" type="button">+ Add</button>
+        </div>
+
+        <ul id="seriesList" class="report-list" role="list" style="margin-top:8px;">
+          <!-- series rows injected by JS -->
+        </ul>
+
+        <div class="chart-card" style="margin-top:10px;">
+          <canvas id="analyticsChart" height="160"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+</body>
+</html>
