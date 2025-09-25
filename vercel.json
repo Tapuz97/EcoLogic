@@ -8,9 +8,5 @@
     { "source": "/privacy", "destination": "/privacy.html" },
     { "source": "/User/:path*", "destination": "/User/:path*.html" },
     { "source": "/Admin/:path*", "destination": "/Admin/:path*.html" }
-  ],
-  "fallback": {
-    "source": "/(.*)",
-    "destination": "/404.html"
-  }
+  ]
 }
