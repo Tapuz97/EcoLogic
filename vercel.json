@@ -5,7 +5,7 @@
     { "source": "/login", "destination": "/login.html" },
     { "source": "/terms", "destination": "/terms.html" },
     { "source": "/privacy", "destination": "/privacy.html" },
-    { "source": "/user/:path*", "destination": "/User/:path*.html" },
-    { "source": "/admin/:path*", "destination": "/Admin/:path*.html" }
+    { "source": "/User/:path*", "destination": "/User/:path*.html" },
+    { "source": "/Admin/:path*", "destination": "/Admin/:path*.html" }
   ]
 }

@@ -3,7 +3,8 @@ import { resolve } from "path";
 
 export default defineConfig({
   root: ".",
-  base: "./",
+  base: "./",          // keep asset paths relative so /User & /Admin work
+  publicDir: "assets", // ✅ copy /assets into dist/
   build: {
     outDir: "dist",
     rollupOptions: {
