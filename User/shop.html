@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en" class="h-full">
+<head>
+<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EcoLogic · Shop</title>
+  <!-- Theme CSS (light by default; toggled by ThemeToggle.js) -->
+  <link id="theme-css" rel="stylesheet" href="/assets/css/style_light.css" />
+  <script src="/assets/js/ThemeToggle.js" defer></script>
+  <script src="/assets/js/UserApp.js" defer></script>
+  <!-- Favicon (EcoLogic) -->
+  <link rel="icon" type="image/svg+xml" href="/assets/logos/EcoIconSVG.svg" />
+  <link rel="shortcut icon" type="image/svg+xml" href="/assets/logos/EcoIconSVG.svg" />
+  <meta name="theme-color" content="#4cd469" />
+
+  <!-- Optional: brand font preload -->
+  <link rel="preload" href="/assets/Fonts/Frankfurter.ttf" as="font" type="font/ttf" crossorigin />
+  <script>
+    // injectSpeedInsights(); // Disabled for compatibility
+  </script>
+</head>
+
+<body data-page="shop" data-icon-base="/assets/icons/">
+  <main class="container" role="main">
+    <!-- Brand header -->
+    <header class="app-brand" aria-label="EcoLogic">
+      <img class="app-logo" src="/assets/logos/EcoIconSVG.svg" alt="EcoLogic logo" />
+      <div class="brand-text">
+        <div class="brand-name">EcoLogic</div>
+        <div class="brand-tagline">Report, track, and redeem.</div>
+      </div>
+      <!-- Theme toggle button -->
+      <button id="themeToggle" class="theme-toggle" aria-pressed="false" aria-label="Toggle theme">
+        <span class="theme-toggle__icon theme-toggle__moon">🌙</span>
+        <span class="theme-toggle__icon theme-toggle__sun">☀️</span>
+        <div class="theme-toggle__knob"></div>
+      </button>
+    </header>
+
+    <!-- EcoShop header + Wallet -->
+    <section aria-labelledby="shop-title" class="dashboard-head">
+      <h1 id="shop-title" class="h1">EcoShop</h1>
+      <p class="sub">Redeem EcoCoins for rewards.</p>
+    </section>
+
+    <section class="wallet" aria-labelledby="wallet-title">
+      <h2 id="wallet-title" class="sr-only">My EcoCoins</h2>
+      <div class="wallet-card">
+        <div class="wallet-left">
+          <div class="wallet-label">My EcoCoins</div>
+          <div class="wallet-amount" id="walletAmountShop" aria-live="polite" aria-atomic="true">999,999</div>
+        </div>
+        <img class="wallet-coin" src="/assets/logos/EcoCoinSVG.svg" alt="" aria-hidden="true" />
+      </div>
+    </section>
+
+    <!-- Product grid -->
+    <!-- Product grid (tiles) -->
+    <section class="recent" aria-labelledby="products-title" style="margin-top:16px;">
+      <div class="recent-head">
+        <h2 id="products-title" class="h1">Rewards</h2>
+      </div>
+
+      <ul class="shop-grid" id="shopGrid" role="list" aria-live="polite" aria-busy="true">
+        <!-- JS will render tiles here -->
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- Bottom nav -->
+  <nav class="nav" aria-label="Primary">
+    <div class="nav-inner">
+      <a href="/User/home.html">
+        <img class="nav-icon" data-icon="house" alt="" />
+        <span class="label">Home</span>
+      </a>
+      <a href="/User/report.html">
+        <img class="nav-icon" data-icon="doc" alt="" />
+        <span class="label">Report</span>
+      </a>
+      <a href="/User/shop.html" aria-current="page">
+        <img class="nav-icon" data-icon="bag" alt="" />
+        <span class="label">Shop</span>
+      </a>
+      <a href="/User/profile.html">
+        <img class="nav-icon" data-icon="user" alt="" />
+        <span class="label">Profile</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Scripts -->
+</body>
+</html>
+
+
+

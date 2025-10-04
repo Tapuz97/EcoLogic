@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en" class="h-full">
+<head>
+<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EcoLogic Admin · Dashboard</title>
+
+  <!-- Theme (light by default; ThemeToggle swaps to style_dark.css) -->
+  <link id="theme-css" rel="stylesheet" href="/assets/css/style_light.css" />
+  <link rel="preload" href="/assets/Fonts/Frankfurter.ttf" as="font" type="font/ttf" crossorigin>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/assets/logos/EcoIconSVG.svg" />
+  <link rel="shortcut icon" type="image/svg+xml" href="/assets/logos/EcoIconSVG.svg" />
+  <meta name="theme-color" content="#4cd469" />
+
+  <!-- Theme toggle + Admin app -->
+  <script src="/assets/js/ThemeToggle.js" defer></script>
+  <script src="/assets/js/AdminApp.js" defer></script>
+  <script>
+    // injectSpeedInsights(); // Disabled for compatibility
+  </script>
+</head>
+<body data-page="dashboard" data-icon-base="/assets/icons/" data-logo-base="/assets/logos/">
+  <!-- Admin Top Nav -->
+  <header class="admin-topnav" aria-label="Admin navigation">
+    <div class="admin-topnav-inner">
+      <a class="admin-brand" href="/Admin/dashboard.html">
+        <img class="nav-icon" data-icon="ecologo" alt="" />
+        <span class="brand-name" style="font-size: clamp(23px, 4vw, 23px)" >EcoLogic · Admin</span>
+      </a>
+      <nav class="admin-nav">
+        <a href="/Admin/dashboard.html" aria-current="page">
+          <img class="nav-icon" data-icon="house" alt="" />
+          <span>Dashboard</span>
+        </a>
+        <a href="/Admin/reports.html">
+          <img class="nav-icon" data-icon="doc" alt="" />
+          <span>Reports</span>
+        </a>
+        <a href="/Admin/analytics.html">
+          <img class="nav-icon" data-icon="chart" alt="" />
+          <span>Analytics</span>
+        </a>
+        <a href="/Admin/export.html">
+          <img class="nav-icon" data-icon="export" alt="" />
+          <span>Export</span>
+        </a>
+        <a href="/login.html">
+          <img class="nav-icon" data-icon="logout" alt="" />
+          <span>Logout</span>
+        </a>
+      </nav>
+      <!-- Theme toggle button -->
+      <button id="themeToggle" class="theme-toggle theme-toggle--inline" aria-pressed="false" aria-label="Toggle theme">
+        <span class="theme-toggle__icon theme-toggle__moon">🌙</span>
+        <span class="theme-toggle__icon theme-toggle__sun">☀️</span>
+        <div class="theme-toggle__knob"></div>
+      </button>
+    </div>
+  </header>
+
+  <main class="container" role="main">
+    <section aria-labelledby="admin-greet" class="dashboard-head" style="margin-top:8px">
+      <h1 id="admin-greet" class="h1">Welcome, Admin</h1>
+      <p class="sub">Overview of today’s activity</p>
+    </section>
+
+    <!-- KPI cards -->
+    <section class="recent" aria-label="Key metrics">
+      <ul class="report-list" role="list">
+        <li class="report-item">
+          <div class="report-main">
+            <div class="report-where">Reports Today</div>
+            <div class="report-when">New submissions</div>
+          </div>
+          <div class="report-side"><span class="report-coins" id="kpiReportsToday">0</span></div>
+        </li>
+        <li class="report-item">
+          <div class="report-main">
+            <div class="report-where">Approval Rate</div>
+            <div class="report-when">Last 7 days</div>
+          </div>
+          <div class="report-side"><span class="report-coins" id="kpiApprovalRate">0%</span></div>
+        </li>
+        <li class="report-item">
+          <div class="report-main">
+            <div class="report-where">Active Users</div>
+            <div class="report-when">Last 24 hours</div>
+          </div>
+          <div class="report-side"><span class="report-coins" id="kpiActiveUsers">0</span></div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Latest reports preview -->
+    <section class="recent" aria-labelledby="latest-title" style="margin-top:16px">
+      <div class="recent-head">
+        <h2 id="latest-title" class="h1">Latest Reports</h2>
+        <a class="btn btn-ghost" href="/Admin/reports.html">
+          <img class="inline-icon" src="/assets/icons/doc.svg" alt="" aria-hidden="true" />
+          Manage all
+        </a>
+      </div>
+      <ul class="report-list" id="adminLatestReports" role="list">
+        <!-- JS will fill -->
+      </ul>
+    </section>
+  </main>
+</body>
+</html>
+
+
+

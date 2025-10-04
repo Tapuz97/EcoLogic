@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" class="h-full">
+<head>
+<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EcoLogic · Camera</title>
+  <link id="theme-css" rel="stylesheet" href="/assets/css/style_light.css" />
+  <link rel="icon" type="image/svg+xml" href="/assets/logos/EcoIconSVG.svg" />
+  <link rel="shortcut icon" type="image/svg+xml" href="/assets/logos/EcoIconSVG.svg" />
+  <meta name="theme-color" content="#4cd469" />
+  <script src="/assets/js/ThemeToggle.js" defer></script>
+  <script src="/assets/js/UserApp.js" defer></script>
+  <style>
+    .cam-wrap{display:flex;align-items:center;justify-content:center;padding:10px}
+    #cameraPreview, #shotCanvas{width:100%;height:auto;max-height:65vh;border-radius:12px}
+    .cta-row.center{justify-content:center}
+  </style>
+
+  <!-- One script for both camera.html and report.html -->
+  <script src="/assets/js/CameraHandler.js" defer></script>
+  <script>
+    // injectSpeedInsights(); // Disabled for compatibility
+  </script>
+</head>
+<body data-page="camera" data-icon-base="/assets/icons/">
+  <main class="container" role="main">
+    <header class="app-brand" aria-label="EcoLogic">
+      <img class="app-logo" src="/assets/logos/EcoIconSVG.svg" alt="EcoLogic logo" />
+      <div class="brand-text">
+        <div class="brand-name">EcoLogic</div>
+        <div class="brand-tagline">Point, snap, upload.</div>
+      </div>
+      <!-- Theme toggle button -->
+      <button id="themeToggle" class="theme-toggle" aria-pressed="false" aria-label="Toggle theme">
+        <span class="theme-toggle__icon theme-toggle__moon">🌙</span>
+        <span class="theme-toggle__icon theme-toggle__sun">☀️</span>
+        <div class="theme-toggle__knob"></div>
+      </button>
+    </header>
+
+    <section class="welcome corner-fade" aria-labelledby="camera-title">
+      <div class="welcome-inner one-col">
+        <div class="hero" style="text-align:center;">
+          <h1 id="camera-title" class="h1">Camera</h1>
+          <p class="sub">Live preview starts automatically. Snap when ready.</p>
+        <div class="visual cam-wrap">
+          <video id="cameraPreview" playsinline autoplay muted></video>
+          <canvas id="shotCanvas" hidden></canvas>
+        </div>
+          <!-- Buttons change labels/actions based on state -->
+        <div class="cta-row center" style="gap:8px;">
+          <button class="btn btn-primary" id="btnPrimary">📸 Snap Photo</button>
+          <button class="btn" id="btnSecondary">Flip</button>
+        </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Scripts -->
+
+</body>
+</html>
+
+
+

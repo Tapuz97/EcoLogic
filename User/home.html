@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EcoLogic · Home</title>
+
+  <!-- Theme (light by default; toggled by ThemeToggle.js) -->
+  <link id="theme-css" rel="stylesheet" href="/assets/css/style_light.css">
+  
+  <!-- Preload JavaScript files -->
+  <link rel="preload" href="/assets/js/ThemeToggle.js" as="script">
+  <link rel="preload" href="/assets/js/UserApp.js" as="script">
+  
+  <!-- Favicon (EcoLogic) -->
+  <link rel="icon" type="image/svg+xml" href="/assets/logos/EcoIconSVG.svg">
+  <link rel="shortcut icon" type="image/svg+xml" href="/assets/logos/EcoIconSVG.svg">
+  <meta name="theme-color" content="#4cd469">
+  <link rel="preload" href="/assets/Fonts/Frankfurter.ttf" as="font" type="font/ttf" crossorigin>
+  <script> // injectSpeedInsights(); // Disabled for compatibility </script>
+</head>
+<body data-page="home" data-icon-base="/assets/icons/">
+  <main class="container" role="main">
+    <!-- Brand header -->
+    <header class="app-brand" aria-label="EcoLogic">
+  <img class="app-logo" src="/assets/logos/EcoIconSVG.svg" alt="EcoLogic logo" />
+      <div class="brand-text">
+        <div class="brand-name">EcoLogic</div>
+        <div class="brand-tagline">Report, track, and redeem.</div>
+      </div>
+      <!-- Theme toggle button -->
+      <button id="themeToggle" class="theme-toggle" aria-pressed="false" aria-label="Toggle theme">
+        <span class="theme-toggle__icon theme-toggle__moon">🌙</span>
+        <span class="theme-toggle__icon theme-toggle__sun">☀️</span>
+        <div class="theme-toggle__knob"></div>
+      </button>
+    </header>
+
+    <!-- Wallet / EcoCoins -->
+    <section class="wallet">
+      <div class="wallet-card">
+        <div class="wallet-left">
+          <div class="wallet-label">Your balance</div>
+          <div class="wallet-amount">1,540 EcoCoins</div>
+        </div>
+        <img class="wallet-coin" src="/assets/logos/EcoCoinSVG.svg" alt="" />
+      </div>
+    </section>
+
+    <!-- Recent reports -->
+    <section class="recent" aria-labelledby="recent-title">
+      <div class="recent-head">
+        <h2 id="recent-title" class="h1" style="font-size:clamp(18px,3.4vw,22px);">Recent reports</h2>
+        <a class="btn btn-ghost" href="/User/history.html">View all</a>
+      </div>
+
+      <ul class="report-list">
+        <li class="report-item">
+          <div class="report-main">
+            <div class="report-where">Greenbelt Park – Trail 3</div>
+            <div class="report-when">Just now · Flora</div>
+          </div>
+          <div class="report-side">
+            <span class="status status-approved">Approved</span>
+            <span class="report-coins">+30</span>
+          </div>
+        </li>
+        <li class="report-item">
+          <div class="report-main">
+            <div class="report-where">Riverside Wetlands</div>
+            <div class="report-when">Yesterday · Wildlife</div>
+          </div>
+          <div class="report-side">
+            <span class="status status-pending">Pending</span>
+            <span class="report-coins">+20</span>
+          </div>
+        </li>
+        <li class="report-item">
+          <div class="report-main">
+            <div class="report-where">City Arboretum</div>
+            <div class="report-when">2 days ago · Photo</div>
+          </div>
+          <div class="report-side">
+            <span class="status status-denied">Denied</span>
+            <span class="report-coins">+0</span>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- Bottom nav-->
+  <nav class="nav" aria-label="Primary">
+    <div class="nav-inner">
+      <a href="/User/home.html">
+        <img class="nav-icon" data-icon="house" alt="" />
+        <span class="label">Home</span>
+      </a>
+      <a href="/User/report.html" aria-current="page">
+        <img class="nav-icon" data-icon="doc" alt="" />
+        <span class="label">Report</span>
+      </a>
+      <a href="/User/shop.html">
+        <img class="nav-icon" data-icon="bag" alt="" />
+        <span class="label">Shop</span>
+      </a>
+      <a href="/User/profile.html">
+        <img class="nav-icon" data-icon="user" alt="" />
+        <span class="label">Profile</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Theme toggle (auto-injected + halo) -->
+
+  <!-- Load JavaScript files at bottom -->
+  <script src="/assets/js/ThemeToggle.js" defer></script>
+  <script src="/assets/js/UserApp.js" defer></script>
+
+</body>
+</html>
+
+
+

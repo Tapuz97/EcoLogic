@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EcoLogic · Login</title>
+
+  <!-- Light by default; swap to style_dark.css if needed -->
+  <link id="theme-css" rel="stylesheet" href="/assets/css/style_light.css">
+  <!-- Optional: preload the brand font -->
+  <link rel="preload" href="/assets/Fonts/Frankfurter.otf" as="font" type="font/otf" crossorigin>
+  
+  <!-- Preload JavaScript files -->
+  <link rel="preload" href="/assets/js/ThemeToggle.js" as="script">
+  <link rel="preload" href="/assets/js/LoginHandler.js" as="script">
+  <link rel="preload" href="/assets/js/UserApp.js" as="script">
+  
+  <!-- Favicon (EcoLogic) -->
+  <link rel="icon" type="image/svg+xml" href="/assets/logos/EcoIconSVG.svg">
+  <link rel="shortcut icon" type="image/svg+xml" href="/assets/logos/EcoIconSVG.svg">
+  <meta name="theme-color" content="#4cd469">
+  <script>
+    // injectSpeedInsights(); // Disabled for compatibility
+  </script>
+</head>
+
+<body data-page="login" data-icon-base="/assets/icons/">
+  <main class="container" role="main">
+    <!-- Brand header -->
+    <header class="app-brand" aria-label="EcoLogic">
+      <img class="app-logo" src="/assets/logos/EcoIconSVG.svg" alt="EcoLogic logo" />
+      <div class="brand-text">
+        <div class="brand-name">EcoLogic</div>
+        <div class="brand-tagline">Report, track, and redeem—turn actions into impact.</div>
+      </div>
+      <!-- Theme toggle button -->
+      <button id="themeToggle" class="theme-toggle" aria-pressed="false" aria-label="Toggle theme">
+        <span class="theme-toggle__icon theme-toggle__moon">🌙</span>
+        <span class="theme-toggle__icon theme-toggle__sun">☀️</span>
+        <div class="theme-toggle__knob"></div>
+      </button>
+    </header>
+
+    <!-- Login card -->
+    <section class="welcome" aria-labelledby="login-title">
+      <div class="welcome-inner">
+        <!-- Left: form -->
+        <div class="hero">
+          <h1 id="login-title" class="h1">Login</h1>
+          <p class="sub">Welcome back! Sign in to continue earning and redeeming EcoCoins.</p>
+
+          <form class="form" id="loginForm" autocomplete="on">
+            <div class="field">
+              <label class="label" for="email">Username / Email</label>
+              <input class="input" id="email" name="email"  placeholder="example@EcoLogic.com" > <!-- Add "required" and Type="email" back for production -->
+            </div>
+
+            <div class="field">
+              <label class="label" for="password">Password</label>
+              <input class="input" id="password" name="password" placeholder="••••••••" > <!-- Add "required" and Type="password" back for production -->
+            </div>
+
+            <!-- Vertical, logo-free buttons -->
+            <div class="cta-row cta-column">
+              <button class="btn btn-primary btn-block" type="submit">Login</button>
+              <a class="btn btn-ghost btn-block" href="/signup.html">Create account</a>
+            </div>
+
+            <!-- Forgot password as a link (like Terms/Privacy) -->
+            <p class="auth-links">
+              <a href="/forgot.html">Forgot password?</a>
+            </p>
+
+            <!-- Terms/Privacy notice -->
+            <p class="sub" style="opacity:.75; margin-top:10px; font-size:12px;">
+              By continuing, you agree to our
+              <a href="../terms.html" style="text-underline-offset:2px;">Terms</a> and
+              <a href="../privacy.html" style="text-underline-offset:2px;">Privacy Policy</a>.
+            </p>
+            <p id="loginError" class="form-error" style="display:none;"></p>
+          </form>
+        </div>
+
+        <!-- Right: mascot to the side (no box, green halo handled in CSS) -->
+        <div class="hero-side" aria-hidden="true">
+          <img class="hero-mascot" src="/assets/logos/EcoShabi.png" alt="">
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Load JavaScript files at bottom -->
+  <script src="/assets/js/ThemeToggle.js" defer></script>
+  <script src="/assets/js/LoginHandler.js" defer></script>
+  <script src="/assets/js/UserApp.js" defer></script>
+
+</body>
+</html>
+
+
+

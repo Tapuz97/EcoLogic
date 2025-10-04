@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EcoLogic · Welcome</title>
+
+  <!-- Theme CSS (required by ThemeToggle.js) -->
+  <link id="theme-css" rel="stylesheet" href="/assets/css/style_light.css">
+
+  <!-- Optional: preload brand font -->
+  <link rel="preload" href="/assets/Fonts/Frankfurter.ttf" as="font" type="font/ttf" crossorigin>
+
+  <!-- Preload JavaScript modules -->
+  <link rel="modulepreload" href="/assets/js/ThemeToggle.js">
+
+  <!-- Theme toggle script -->
+  <script src="/assets/js/ThemeToggle.js" defer></script>
+
+  <!-- Favicon (EcoLogic) -->
+  <link rel="icon" type="image/svg+xml" href="/assets/logos/EcoIconSVG.svg">
+  <link rel="shortcut icon" type="image/svg+xml" href="/assets/logos/EcoIconSVG.svg">
+  <meta name="theme-color" content="#4cd469">
+  <script>
+    // injectSpeedInsights(); // Disabled for compatibility
+  </script>
+</head>
+
+<body data-page="index" data-icon-base="/assets/icons/">
+  <main class="container">
+    <!-- Brand header -->
+    <header class="app-brand" aria-label="EcoLogic">
+      <img class="app-logo" src="/assets/logos/EcoIconSVG.svg" alt="EcoLogic logo" />
+      <div>
+        <div class="brand-name">EcoLogic</div>
+        <div class="brand-tagline">Report, track, and redeem.</div>
+      </div>
+      <!-- Theme toggle button -->
+      <button id="themeToggle" class="theme-toggle" aria-pressed="false" aria-label="Toggle theme">
+        <span class="theme-toggle__icon theme-toggle__moon">🌙</span>
+        <span class="theme-toggle__icon theme-toggle__sun">☀️</span>
+        <div class="theme-toggle__knob"></div>
+      </button>
+    </header>
+
+    <!-- 404 card -->
+    <section class="welcome">
+      <div class="welcome-inner">
+        <div class="hero" style="align-items:center; text-align:center;">
+          <h1 class="h1">404 — Page not found</h1>
+          <p class="sub">We couldn't find the page you requested.</p>
+          <p class="sub" style="opacity:.8; margin-top:6px;">It may have been moved or removed.</p>
+
+          <div style="margin-top:18px; display:flex; justify-content:center; gap:12px;">
+            <button id="btnGoBack" class="btn btn-primary" type="button">Go back</button>
+          </div>
+        </div>
+
+        <div class="hero-side" aria-hidden="true">
+          <img class="hero-mascot" src="/assets/logos/EcoShabi404.png" alt="" />
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Graceful back: try history.back(), fall back to index.html
+    document.getElementById('btnGoBack')?.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (window.history.length > 1) {
+        window.history.back();
+        // after 400ms, if we're still on the same page (no back), navigate home
+        setTimeout(() => {
+          if (location.pathname.endsWith('/404.html') || location.pathname === '/' ) {
+            location.href = './index.html';
+          }
+        }, 400);
+      } else {
+        location.href = './index.html';
+      }
+    });
+  </script>
+</body>
+</html>
+
+
+

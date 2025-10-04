@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en" class="h-full">
+<head>
+<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EcoLogic · Profile</title>
+
+  <!-- Theme CSS (swap to style_dark.css via ThemeToggle.js) -->
+  <link id="theme-css" rel="stylesheet" href="/assets/css/style_light.css">
+  <script src="/assets/js/ThemeToggle.js" defer></script>
+  <script src="/assets/js/UserApp.js" defer></script>
+  <!-- Favicon (EcoLogic) -->
+  <link rel="icon" type="image/svg+xml" href="/assets/logos/EcoIconSVG.svg">
+  <link rel="shortcut icon" type="image/svg+xml" href="/assets/logos/EcoIconSVG.svg">
+  <meta name="theme-color" content="#4cd469">
+  <script>
+    // injectSpeedInsights(); // Disabled for compatibility
+  </script>
+</head>
+
+<body data-page="profile" data-icon-base="/assets/icons/">
+  <main class="container" role="main">
+    <!-- Brand header -->
+    <header class="app-brand" aria-label="EcoLogic">
+      <img class="app-logo" src="/assets/logos/EcoIconSVG.svg" alt="EcoLogic logo" />
+      <div class="brand-text">
+        <div class="brand-name">EcoLogic</div>
+        <div class="brand-tagline">Report, track, and redeem.</div>
+      </div>
+      <!-- Theme toggle button -->
+      <button id="themeToggle" class="theme-toggle" aria-pressed="false" aria-label="Toggle theme">
+        <span class="theme-toggle__icon theme-toggle__moon">🌙</span>
+        <span class="theme-toggle__icon theme-toggle__sun">☀️</span>
+        <div class="theme-toggle__knob"></div>
+      </button>
+    </header>
+
+    <!-- Greeting -->
+    <section aria-labelledby="hello-title" class="dashboard-head">
+      <h1 id="hello-title" class="h1">Hello,</h1>
+      <p class="brand-name" id="profileName" aria-label="User display name">Shabi Shablul</p>
+    </section>
+
+    <!-- Settings (wrapped in card) -->
+<!-- Settings (wrapped in card, full-row clickable) -->
+<section class="welcome corner-fade" aria-labelledby="settings-title" style="margin-top:8px;">
+  <div class="welcome-inner one-col">
+    <div class="hero">
+
+      <!-- Title row + dark mode toggle on the right -->
+      <!-- Title row + theme toggle on the right -->
+      <div class="recent-head">
+        <h2 id="settings-title" class="h1">Settings</h2>
+      </div>
+
+
+      <ul class="settings-list" role="list">
+        <li>
+          <a class="setting-row" href="#" id="openPersonalSettings">
+            <img class="inline-icon leading-icon" data-icon="id_card" alt="" aria-hidden="true" />
+            <span class="setting-text">
+              <span class="setting-title">Personal Settings</span>
+              <span class="setting-sub">Profile, preferences</span>
+            </span>
+          </a>
+        </li>
+
+        <li>
+          <a class="setting-row" href="#" id="openPurchaseHistory">
+            <img class="inline-icon leading-icon" data-icon="money" alt="" aria-hidden="true" />
+            <span class="setting-text">
+              <span class="setting-title">Purchase History</span>
+              <span class="setting-sub">Active &amp; redeemed rewards</span>
+            </span>
+          </a>
+        </li>
+
+        <li>
+          <a class="setting-row" href="/../privacy.html" id="openPrivacy">
+            <img class="inline-icon leading-icon" data-icon="data" alt="" aria-hidden="true" />
+            <span class="setting-text">
+              <span class="setting-title">Data &amp; Privacy</span>
+              <span class="setting-sub">Your data controls</span>
+            </span>
+          </a>
+        </li>
+
+        <li>
+          <a class="setting-row" href="#" id="openSecurity">
+            <img class="inline-icon leading-icon" data-icon="shield" alt="" aria-hidden="true" />
+            <span class="setting-text">
+              <span class="setting-title">Security Settings</span>
+              <span class="setting-sub">Password &amp; login</span>
+            </span>
+          </a>
+        </li>
+      </ul>
+
+      <!-- Logout -->
+      <div class="settings-logout">
+        <button class="btn btn-ghost" id="logoutBtn">
+          <img class="inline-icon leading-icon" data-icon="logout" alt="" aria-hidden="true" />
+          Logout
+        </button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+  </main>
+
+  <!-- Bottom nav-->
+  <nav class="nav" aria-label="Primary">
+    <div class="nav-inner">
+      <a href="/User/home.html">
+        <img class="nav-icon" data-icon="house" alt="" />
+        <span class="label">Home</span>
+      </a>
+      <a href="/User/report.html">
+        <img class="nav-icon" data-icon="doc" alt="" />
+        <span class="label">Report</span>
+      </a>
+      <a href="/User/shop.html">
+        <img class="nav-icon" data-icon="bag" alt="" />
+        <span class="label">Shop</span>
+      </a>
+      <a href="/User/profile.html" aria-current="page">
+        <img class="nav-icon" data-icon="user" alt="" />
+        <span class="label">Profile</span>
+      </a>
+    </div>
+  </nav>
+</body>
+</html>
+
+
+

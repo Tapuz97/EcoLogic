@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en" class="h-full">
+<head>
+<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EcoLogic Admin · Reports</title>
+
+  <link id="theme-css" rel="stylesheet" href="/assets/css/style_light.css" />
+  <link rel="icon" type="image/svg+xml" href="/assets/logos/EcoIconSVG.svg" />
+  <meta name="theme-color" content="#4cd469" />
+  <link rel="preload" href="/assets/Fonts/Frankfurter.ttf" as="font" type="font/ttf" crossorigin>
+  <script src="/assets/js/StatsCharts.js" defer></script>
+  <script src="/assets/js/ThemeToggle.js" defer></script>
+  <script src="/assets/js/AdminApp.js" defer></script>
+  <script>
+    // injectSpeedInsights(); // Disabled for compatibility
+  </script>
+</head>
+<body data-page="reports" data-icon-base="/assets/icons/" data-logo-base="/assets/logos/">
+  <!-- Top Nav -->
+  <header class="admin-topnav" aria-label="Admin navigation">
+    <div class="admin-topnav-inner">
+      <a class="admin-brand" href="/Admin/dashboard.html">
+        <img class="nav-icon" data-icon="ecologo" alt="" />
+        <span class="brand-name" style="font-size: clamp(23px, 4vw, 23px)" >EcoLogic · Admin</span>
+      </a>
+      <nav class="admin-nav">
+        <a href="/Admin/dashboard.html"><img class="nav-icon" data-icon="house" alt="" />Dashboard</a>
+        <a href="/Admin/reports.html" aria-current="page"><img class="nav-icon" data-icon="doc" alt="" />Reports</a>
+        <a href="/Admin/analytics.html"><img class="nav-icon" data-icon="chart" alt="" />Analytics</a>
+        <a href="/Admin/export.html"><img class="nav-icon" data-icon="export" alt="" />Export</a>
+        <a href="/login.html"><img class="nav-icon" data-icon="logout" alt="" />Logout</a>
+      </nav>
+      <!-- Theme toggle button -->
+      <button id="themeToggle" class="theme-toggle theme-toggle--inline" aria-pressed="false" aria-label="Toggle theme">
+        <span class="theme-toggle__icon theme-toggle__moon">🌙</span>
+        <span class="theme-toggle__icon theme-toggle__sun">☀️</span>
+        <div class="theme-toggle__knob"></div>
+      </button>
+    </div>
+  </header>
+
+  <main class="container" role="main">
+    <!-- Page Title -->
+    <section class="dashboard-head">
+      <h1 class="h1">Reports</h1>
+      <p class="sub">Filter and review user reports.</p>
+    </section>
+
+    <!-- Filters -->
+    <section class="reports-filters" aria-label="Filters">
+      <form class="form" id="adminReportFilters">
+        <!-- Species -->
+        <div class="field">
+          <label class="label" for="filterSpecies">Species</label>
+          <input class="input" id="filterSpecies" type="text" name="species">
+        </div>
+
+        <!-- Date range -->
+        <div class="field">
+          <label class="label" for="filterDateFrom">Date from</label>
+          <input class="input" id="filterDateFrom" type="date" name="from">
+        </div>
+        <div class="field">
+          <label class="label" for="filterDateTo">Date to</label>
+          <input class="input" id="filterDateTo" type="date" name="to">
+        </div>
+
+        <!-- Location -->
+        <div class="field">
+          <label class="label" for="filterLocation">Location</label>
+          <input class="input" id="filterLocation" type="text" name="location">
+        </div>
+
+        <!-- Status -->
+        <div class="field">
+          <label class="label" for="filterStatus">Status</label>
+          <select class="input" id="filterStatus" name="status">
+            <option value="" selected>Any</option>
+            <option value="pending">Pending</option>
+            <option value="approved">Approved</option>
+            <option value="denied">Denied</option>
+          </select>
+        </div>
+
+        <!-- Buttons -->
+        <div class="filter-actions">
+          <button class="btn" id="btnApplyFilters" type="button">Apply</button>
+          <button class="btn btn-ghost" id="btnClearFilters" type="button">Clear</button>
+        </div>
+      </form>
+    </section>
+
+
+    <!-- Reports list -->
+      <div class="table-wrap">
+        <table class="table" id="adminReportTable">
+          <thead></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+  </main>
+
+  <!-- Side panel + backdrop -->
+
+</body>
+</html>
+
+
+
+

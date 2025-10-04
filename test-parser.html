@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Parser Test</title>
+    <link rel="stylesheet" href="/assets/css/style_light.css">
+    <style>
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .test-button {
+            background: #4cd469;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .test-button:hover {
+            background: #45b85a;
+        }
+        .result-area {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .status-good { color: #28a745; }
+        .status-error { color: #dc3545; }
+        .status-warning { color: #ffc107; }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 Data Parser Testing Interface</h1>
+        <p>This page tests the data transformation from raw Firebase reports to statistical formats.</p>
+
+        <div class="test-section">
+            <h2>📊 Data Parser Status</h2>
+            <button class="test-button" onclick="checkParserStatus()">Check Parser Status</button>
+            <div id="status-result" class="result-area"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>🔍 Raw Reports Data</h2>
+            <button class="test-button" onclick="fetchRawReports()">Fetch Raw Reports</button>
+            <div id="reports-result" class="result-area"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>🧮 Statistical Transformations</h2>
+            <button class="test-button" onclick="testTransformation('t-test-depth')">T-Test Depth</button>
+            <button class="test-button" onclick="testTransformation('anova-beach')">ANOVA Beach</button>
+            <button class="test-button" onclick="testTransformation('anova-habitat')">ANOVA Habitat</button>
+            <button class="test-button" onclick="testTransformation('regression-water')">Regression Water</button>
+            <button class="test-button" onclick="testTransformation('chi-species')">Chi-Square Species</button>
+            <button class="test-button" onclick="testTransformation('kriging-map')">Kriging Map</button>
+            <div id="transform-result" class="result-area"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>🚀 Data Processing</h2>
+            <button class="test-button" onclick="processAllData()">Process All Statistical Data</button>
+            <button class="test-button" onclick="checkStatsEndpoints()">Check Stats Endpoints</button>
+            <div id="processor-result" class="result-area"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>📈 StatsCharts.js Integration</h2>
+            <button class="test-button" onclick="testStatsAPI()">Test Stats API Directly</button>
+            <button class="test-button" onclick="testChartIntegration()">Test Chart Integration</button>
+            <div id="chart-result" class="result-area"></div>
+        </div>
+    </div>
+
+    <script>
+        function log(elementId, message, type = 'info') {
+            const element = document.getElementById(elementId);
+            const timestamp = new Date().toLocaleTimeString();
+            const className = type === 'error' ? 'status-error' : 
+                            type === 'success' ? 'status-good' : 
+                            type === 'warning' ? 'status-warning' : '';
+            
+            element.innerHTML += `<div class="${className}">[${timestamp}] ${message}</div>`;
+            element.scrollTop = element.scrollHeight;
+        }
+
+        function clearLog(elementId) {
+            document.getElementById(elementId).innerHTML = '';
+        }
+
+        async function checkParserStatus() {
+            clearLog('status-result');
+            log('status-result', '🔄 Checking data parser status...', 'info');
+            
+            try {
+                const response = await fetch('/api/data-parser');
+                if (response.ok) {
+                    const data = await response.json();
+                    log('status-result', '✅ Parser is online', 'success');
+                    log('status-result', `📊 Total reports: ${data.totalReports}`, 'info');
+                    log('status-result', `🔗 Available endpoints: ${data.availableEndpoints.length}`, 'info');
+                    data.availableEndpoints.forEach(endpoint => {
+                        log('status-result', `   • ${endpoint}`, 'info');
+                    });
+                } else {
+                    log('status-result', `❌ Parser error: ${response.status} ${response.statusText}`, 'error');
+                }
+            } catch (error) {
+                log('status-result', `❌ Connection error: ${error.message}`, 'error');
+            }
+        }
+
+        async function fetchRawReports() {
+            clearLog('reports-result');
+            log('reports-result', '🔄 Fetching raw reports data...', 'info');
+            
+            try {
+                const response = await fetch('/api/reports?limit=10');
+                if (response.ok) {
+                    const data = await response.json();
+                    log('reports-result', `✅ Fetched ${data.reports.length} reports`, 'success');
+                    
+                    data.reports.slice(0, 3).forEach((report, i) => {
+                        log('reports-result', `📄 Report ${i+1}: ${report.species} at ${report.where} (${report.status})`, 'info');
+                    });
+                    
+                    log('reports-result', `💾 Full data available in browser console`, 'info');
+                    console.log('Raw Reports Data:', data);
+                } else {
+                    log('reports-result', `❌ Reports error: ${response.status} ${response.statusText}`, 'error');
+                }
+            } catch (error) {
+                log('reports-result', `❌ Connection error: ${error.message}`, 'error');
+            }
+        }
+
+        async function testTransformation(endpoint) {
+            clearLog('transform-result');
+            log('transform-result', `🔄 Testing transformation: ${endpoint}...`, 'info');
+            
+            try {
+                const response = await fetch('/api/data-parser', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        endpoint: endpoint,
+                        source: 'scientist',
+                        field: 'density_per_m2',
+                        grid: 160
+                    })
+                });
+                
+                if (response.ok) {
+                    const result = await response.json();
+                    log('transform-result', `✅ ${endpoint} transformation successful`, 'success');
+                    log('transform-result', `📊 Data type: ${result.data.test || endpoint}`, 'info');
+                    
+                    if (result.data.p_value) {
+                        log('transform-result', `🧮 P-value: ${result.data.p_value} (${result.data.significant ? 'significant' : 'not significant'})`, 'info');
+                    }
+                    
+                    if (result.data.n || result.data.points) {
+                        log('transform-result', `📈 Sample size: ${result.data.n || result.data.points}`, 'info');
+                    }
+                    
+                    log('transform-result', `💾 Full data available in browser console`, 'info');
+                    console.log(`${endpoint} transformation result:`, result.data);
+                } else {
+                    log('transform-result', `❌ Transformation failed: ${response.status} ${response.statusText}`, 'error');
+                }
+            } catch (error) {
+                log('transform-result', `❌ Connection error: ${error.message}`, 'error');
+            }
+        }
+
+        async function processAllData() {
+            clearLog('processor-result');
+            log('processor-result', '🔄 Processing all statistical data...', 'info');
+            
+            try {
+                const response = await fetch('/api/data-parser', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ processAll: true })
+                });
+                
+                if (response.ok) {
+                    const result = await response.json();
+                    log('processor-result', '✅ All data processed successfully', 'success');
+                    log('processor-result', `📊 Processed ${result.totalReports} reports`, 'info');
+                    
+                    Object.entries(result.results).forEach(([endpoint, status]) => {
+                        const statusType = status === 'success' ? 'success' : 'error';
+                        log('processor-result', `   • ${endpoint}: ${status}`, statusType);
+                    });
+                    
+                    log('processor-result', `⏰ Completed at: ${new Date(result.timestamp).toLocaleTimeString()}`, 'info');
+                } else {
+                    log('processor-result', `❌ Processing failed: ${response.status} ${response.statusText}`, 'error');
+                }
+            } catch (error) {
+                log('processor-result', `❌ Connection error: ${error.message}`, 'error');
+            }
+        }
+
+        async function checkStatsEndpoints() {
+            clearLog('processor-result');
+            log('processor-result', '� Checking stats endpoints...', 'info');
+            
+            const endpoints = ['t_test_depth', 'anova_beach', 'anova_habitat', 'regression_waterlevel', 'chi_species_by', 'kriging_map'];
+            
+            for (const endpoint of endpoints) {
+                try {
+                    const response = await fetch(`/api/stats?endpoint=${endpoint}`);
+                    if (response.ok) {
+                        const data = await response.json();
+                        log('processor-result', `✅ ${endpoint}: Data available`, 'success');
+                    } else if (response.status === 204) {
+                        log('processor-result', `⚠️ ${endpoint}: No data - run processor first`, 'warning');
+                    } else {
+                        log('processor-result', `❌ ${endpoint}: ${response.statusText}`, 'error');
+                    }
+                } catch (error) {
+                    log('processor-result', `❌ ${endpoint}: ${error.message}`, 'error');
+                }
+            }
+        }
+
+        async function testStatsAPI() {
+            clearLog('chart-result');
+            log('chart-result', '📊 Testing stats API directly...', 'info');
+            
+            try {
+                const response = await fetch('/api/stats');
+                if (response.ok) {
+                    const data = await response.json();
+                    log('chart-result', '✅ Stats API is working', 'success');
+                    log('chart-result', `📅 Last updated: ${data.last_updated || 'Never'}`, 'info');
+                    log('chart-result', `� Available endpoints: ${data.available_endpoints.length}`, 'info');
+                    
+                    data.available_endpoints.forEach(endpoint => {
+                        log('chart-result', `   • /api/stats?endpoint=${endpoint}`, 'info');
+                    });
+                } else {
+                    log('chart-result', `❌ Stats API error: ${response.status} ${response.statusText}`, 'error');
+                }
+            } catch (error) {
+                log('chart-result', `❌ Connection error: ${error.message}`, 'error');
+            }
+        }
+
+        function testChartIntegration() {
+            clearLog('chart-result');
+            log('chart-result', '📈 Testing chart integration...', 'info');
+            
+            // Check if StatsCharts.js functions are available
+            if (window.renderAll) {
+                log('chart-result', '✅ StatsCharts.js is loaded', 'success');
+                log('chart-result', '🔄 Triggering chart render...', 'info');
+                
+                try {
+                    window.renderAll();
+                    log('chart-result', '✅ Charts rendered successfully', 'success');
+                } catch (error) {
+                    log('chart-result', `❌ Chart render error: ${error.message}`, 'error');
+                }
+            } else {
+                log('chart-result', '⚠️ StatsCharts.js not loaded on this page', 'warning');
+                log('chart-result', '💡 Try this test on the analytics page', 'info');
+            }
+            
+            // Check for Chart.js
+            if (window.Chart) {
+                log('chart-result', '✅ Chart.js is available', 'success');
+            } else {
+                log('chart-result', '❌ Chart.js not loaded', 'error');
+            }
+            
+            // Test actual stats endpoints that StatsCharts.js uses
+            log('chart-result', '🔍 Testing StatsCharts.js endpoints...', 'info');
+            const endpoints = [
+                '/api/stats?endpoint=t_test_depth',
+                '/api/stats?endpoint=anova_beach',
+                '/api/stats?endpoint=anova_habitat',
+                '/api/stats?endpoint=regression_waterlevel',
+                '/api/stats?endpoint=chi_species_by',
+                '/api/stats?endpoint=kriging_map'
+            ];
+            
+            endpoints.forEach(async (url, i) => {
+                try {
+                    const response = await fetch(url);
+                    const endpointName = url.split('=')[1];
+                    if (response.ok) {
+                        log('chart-result', `✅ ${endpointName}: Ready for StatsCharts.js`, 'success');
+                    } else if (response.status === 204) {
+                        log('chart-result', `⚠️ ${endpointName}: No data (run processor first)`, 'warning');
+                    } else {
+                        log('chart-result', `❌ ${endpointName}: ${response.statusText}`, 'error');
+                    }
+                } catch (error) {
+                    log('chart-result', `❌ ${endpointName}: ${error.message}`, 'error');
+                }
+            });
+        }
+
+        // Auto-run basic checks when page loads
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                checkParserStatus();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

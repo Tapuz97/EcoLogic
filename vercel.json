@@ -1,0 +1,48 @@
+{
+  "version": 2,
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "headers": [
+    {
+      "source": "/assets/js/(.*)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/javascript"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/index", "destination": "/index.html" },
+    { "source": "/login", "destination": "/login.html" },
+    { "source": "/terms", "destination": "/terms.html" },
+    { "source": "/privacy", "destination": "/privacy.html" },
+    { "source": "/User/home", "destination": "/User/home.html" },
+    { "source": "/User/report", "destination": "/User/report.html" },
+    { "source": "/User/shop", "destination": "/User/shop.html" },
+    { "source": "/User/profile", "destination": "/User/profile.html" },
+    { "source": "/User/camera", "destination": "/User/camera.html" },
+    { "source": "/Admin/dashboard", "destination": "/Admin/dashboard.html" },
+    { "source": "/Admin/reports", "destination": "/Admin/reports.html" },
+    { "source": "/Admin/analytics", "destination": "/Admin/analytics.html" },
+    { "source": "/Admin/export", "destination": "/Admin/export.html" }
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false
+  
+}

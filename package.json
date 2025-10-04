@@ -1,0 +1,41 @@
+{
+  "name": "ecologic",
+  "version": "1.1.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "clean": "rimraf dist",
+    "vercel-build": "vite build",
+    "setup": "node setup-env.js",
+    "setup:env": "node setup-env.js",
+    "postinstall": "echo 'Run npm run setup to configure environment variables'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tapuz97/EcoLogic.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tapuz97/EcoLogic/issues"
+  },
+  "homepage": "https://github.com/Tapuz97/EcoLogic#readme",
+  "description": "",
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "rimraf": "^6.0.1",
+    "vite": "^7.1.7",
+    "vite-plugin-static-copy": "^3.1.2"
+  },
+  "dependencies": {
+    "@vercel/speed-insights": "^1.2.0",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "firebase": "^12.3.0",
+    "firebase-admin": "^13.5.0"
+  }
+}
